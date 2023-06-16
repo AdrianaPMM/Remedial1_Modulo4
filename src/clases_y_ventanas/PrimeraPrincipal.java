@@ -8,13 +8,36 @@ package clases_y_ventanas;
  *
  * @author ESTUDIANTE
  */
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class PrimeraPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrimeraPrincipal
-     */
+      VentanaRegistro registro = new VentanaRegistro();
+    VentanaInicioSesion inicioSesion = new VentanaInicioSesion();
+    
     public PrimeraPrincipal() {
         initComponents();
+        String query = "Select * From tbUsuarios";
+        
+        try {
+            PreparedStatement confirmUser = ConexionSQL.getConnection().prepareStatement(query);
+            ResultSet resultSet = confirmUser.executeQuery();
+                    
+            if (!resultSet.next()) {            
+                System.out.println("tbUsuarios Vacia");
+                registro.setVisible(true);
+                jPanelPrincipal.add(registro);                  
+                
+            } else {
+                System.out.println("algo en tbUsuarios");
+                jPanelPrincipal.add(inicioSesion);  
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERROR en algo: " + e.toString());
+        }
     }
 
     /**
@@ -26,33 +49,14 @@ public class PrimeraPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPrincipal.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -96,6 +100,6 @@ public class PrimeraPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
