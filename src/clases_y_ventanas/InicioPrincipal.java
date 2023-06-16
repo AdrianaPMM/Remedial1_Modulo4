@@ -4,6 +4,9 @@
  */
 package clases_y_ventanas;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ESTUDIANTE
@@ -15,6 +18,32 @@ public class InicioPrincipal extends javax.swing.JFrame {
      */
     public InicioPrincipal() {
         initComponents();
+        
+         String query = "Select NombresUsuario, ApellidosUsuario From tbUsuarios Where UsuarioUsuario = ?";
+        
+        VentanaInicioSesion inicioSesion = new VentanaInicioSesion();
+        String usuario = inicioSesion.user;
+        
+        try {
+            PreparedStatement nombre = ConexionSQL.getConnection().prepareStatement(query);
+            nombre.setString(1, usuario);            
+            ResultSet resultSet = nombre.executeQuery();
+                    
+           if (resultSet.next()) 
+            {
+                String nombreUs = resultSet.getString("NombresUsuario");
+                String apellidoUs = resultSet.getString("ApellidosUsuario"); 
+                
+                lblSaludo.setText("Bienvenid@ " + nombreUs + " " + apellidoUs);
+            } 
+           else 
+           {
+                System.out.println("a");
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERROR en el query: " + e.toString());
+        }
     }
 
     /**
@@ -26,14 +55,21 @@ public class InicioPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblSaludo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSaludo.setForeground(new java.awt.Color(0, 0, 0));
+        lblSaludo.setText("Saludo");
+        jPanel2.add(lblSaludo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 640, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -74,6 +110,7 @@ public class InicioPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblSaludo;
     // End of variables declaration//GEN-END:variables
 }
