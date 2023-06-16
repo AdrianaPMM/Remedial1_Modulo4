@@ -33,6 +33,8 @@ public class VentanaRegistro extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jButton1.setText("iniciar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
