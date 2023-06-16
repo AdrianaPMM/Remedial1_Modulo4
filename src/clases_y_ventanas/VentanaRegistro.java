@@ -4,6 +4,8 @@
  */
 package clases_y_ventanas;
 
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author ESTUDIANTE
@@ -31,11 +33,16 @@ public class VentanaRegistro extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("iniciar");
+        btnAceptar.setText("iniciar");
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAceptarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -43,7 +50,7 @@ public class VentanaRegistro extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(315, 315, 315))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(79, 79, 79)
@@ -78,7 +85,7 @@ public class VentanaRegistro extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88)))
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
@@ -94,9 +101,35 @@ public class VentanaRegistro extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
+        
+        /* if(txtNombre.getText() == "" || txtApellido.getText() == "" || txtUsuario.getText() == "" || txtCorreo.getText() == "" || txtCont          ra.getText() == "")
+        {
+            System.out.println("Ningun campo puede estar vacio");
+        }
+         else
+         {
+        
+            String query = "Insert Into tbUsuarios(NombresUsuario, ApellidosUsuario, UsuarioUsuario, CorreoUsuario, ContraUsuario) Values (?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement addPersona = ConexionSQL.getConnection().prepareStatement(query);
+                addPersona.setString(1, txtNombre.getText());
+                addPersona.setString(2, txtApellido.getText());
+                addPersona.setString(3, txtUsuario.getText());
+                addPersona.setString(4, txtCorreo.getText());
+                addPersona.setString(5, txtContra.getText());
+
+                addPersona.executeUpdate(); System.out.println("Agregado");
+
+            } catch (Exception e) {
+                System.out.println("ERROR en el query: " + e.toString());
+            }*/
+        //}
+    }//GEN-LAST:event_btnAceptarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
