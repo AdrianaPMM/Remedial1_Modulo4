@@ -180,7 +180,7 @@ public class VentanaInicioSesion extends javax.swing.JPanel {
                 ResultSet resultSet = confirmUser.executeQuery();
 
                 if (!resultSet.next()) {
-                    System.out.println("No se ha encontrado el usuario");
+                    System.out.println("Credenciales Incorrectas");
                 } else {
                     System.out.println("Bienvenido");
                     InicioPrincipal home = new InicioPrincipal();
